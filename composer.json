@@ -1,0 +1,26 @@
+{
+    "name": "nadeolive/maniadirect",
+    "description": "ManiaDirect",
+    "type": "project",
+    "autoload": {
+        "psr-4": { "Nadeo\\Live\\ManiaDirect\\": "src/" },
+        "classmap": [ "app/ManiaDirect.php" ]
+    },
+    "require": {
+        "symfony/console": "~3.0",
+        "symfony/process": "~3.0",
+        "symfony/event-dispatcher": "~3.0",
+        "symfony/stopwatch": "~3.0",
+        "maniaplanet/dedicated-server-api": "~5.0@dev",
+        "rdlowrey/auryn": "^1.4",
+        "monolog/monolog": "^1.21"
+    },
+    "bin": [
+        "bin/maniadirect.php"
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
