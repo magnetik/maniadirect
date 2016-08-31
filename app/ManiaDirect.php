@@ -18,7 +18,8 @@ class ManiaDirect
 
         $pluginClasses = [ //To be loaded from elsewhere
             \Nadeo\Live\ManiaDirect\Core\CallbackDispatcher\CallbackDispatcherPlugin::class,
-            \Nadeo\Live\ManiaDirect\Core\XmlrpcScriptCallbackDispatcher\XmlrpcScriptCallbackDispatcherPlugin::class
+            \Nadeo\Live\ManiaDirect\Core\XmlrpcScriptCallbackDispatcher\XmlrpcScriptCallbackDispatcherPlugin::class,
+            \Nadeo\Live\ManiaDirect\Core\ChatCommandDispatcher\ChatCommandDispatcherPlugin::class
         ];
 
         //Logs
