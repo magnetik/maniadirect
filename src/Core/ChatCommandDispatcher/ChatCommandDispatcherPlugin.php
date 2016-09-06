@@ -18,6 +18,11 @@ class ChatCommandDispatcherPlugin implements PluginInterface, EventSubscriberInt
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    public function getPrefix()
+    {
+        return 'chat_command';
+    }
+
     public static function getSubscribedEvents()
     {
         return [

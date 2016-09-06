@@ -2,6 +2,7 @@
 
 namespace Nadeo\Live\ManiaDirect\Core\XmlrpcScriptCallbackDispatcher;
 
+use Maniaplanet\DedicatedServer\Connection;
 use Nadeo\Live\ManiaDirect\Core\CallbackDispatcher\CallbackDispatcherEvents;
 use Nadeo\Live\ManiaDirect\Core\CallbackDispatcher\Event\ModeScriptCallbackArray;
 use Nadeo\Live\ManiaDirect\Event\EventInterface;
@@ -14,11 +15,21 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class XmlrpcScriptCallbackDispatcherPlugin implements PluginInterface, EventSubscriberInterface
 {
+    private $connection;
+
     private $eventDispatcher;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher)
+    public function __construct(Connection $connection, EventDispatcherInterface $eventDispatcher)
     {
+        $this->connection = $connection;
         $this->eventDispatcher = $eventDispatcher;
+
+        $connection->setModeScriptSettings(['S_UseScriptCallbacks' => true]);
+    }
+
+    public function getPrefix()
+    {
+        return 'xmlrpc';
     }
 
     public static function getSubscribedEvents()
@@ -44,6 +55,38 @@ class XmlrpcScriptCallbackDispatcherPlugin implements PluginInterface, EventSubs
 
             case 'LibXmlRpc_OnHit':
                 $event = new Event\OnHit($parameters);
+                break;
+
+            case 'LibXmlRpc_BeginMatch':
+                $event = new Event\BeginMatch($parameters);
+                break;
+
+            case 'LibXmlRpc_BeginMap':
+                $event = new Event\BeginMap($parameters);
+                break;
+
+            case 'LibXmlRpc_BeginRound':
+                $event = new Event\BeginRound($parameters);
+                break;
+
+            case 'LibXmlRpc_BeginTurn':
+                $event = new Event\BeginTurn($parameters);
+                break;
+
+            case 'LibXmlRpc_EndMatch':
+                $event = new Event\EndMatch($parameters);
+                break;
+
+            case 'LibXmlRpc_EndRound':
+                $event = new Event\EndRound($parameters);
+                break;
+
+            case 'LibXmlRpc_EndMap':
+                $event = new Event\EndMap($parameters);
+                break;
+
+            case 'LibXmlRpc_EndTurn':
+                $event = new Event\EndTurn($parameters);
                 break;
 
             default:

@@ -22,6 +22,13 @@ class CallbackDispatcherPlugin implements PluginInterface, EventSubscriberInterf
     {
         $this->connection = $connection;
         $this->eventDispatcher = $eventDispatcher;
+
+        $this->connection->enableCallbacks();
+    }
+
+    public function getPrefix()
+    {
+        return 'maniaplanet';
     }
 
     public static function getSubscribedEvents()

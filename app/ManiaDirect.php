@@ -19,7 +19,8 @@ class ManiaDirect
         $pluginClasses = [ //To be loaded from elsewhere
             \Nadeo\Live\ManiaDirect\Core\CallbackDispatcher\CallbackDispatcherPlugin::class,
             \Nadeo\Live\ManiaDirect\Core\XmlrpcScriptCallbackDispatcher\XmlrpcScriptCallbackDispatcherPlugin::class,
-            \Nadeo\Live\ManiaDirect\Core\ChatCommandDispatcher\ChatCommandDispatcherPlugin::class
+            \Nadeo\Live\ManiaDirect\Core\ChatCommandDispatcher\ChatCommandDispatcherPlugin::class,
+            \Nadeo\Live\ManiaDirect\Core\MatchManager\MatchManagerPlugin::class
         ];
 
         //Logs
@@ -31,7 +32,6 @@ class ManiaDirect
 
         //XmlRpc connection
         $connection = Connection::factory($config['ip'], $config['port']);
-        $connection->enableCallbacks();
         $injector->share($connection);
 
         //Event dispatcher
