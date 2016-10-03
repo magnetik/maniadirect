@@ -32,6 +32,7 @@ class CallbackDispatcherPluginTest extends \PHPUnit_Framework_TestCase
         $this->eventDispatcher = new EventDispatcher();
         $this->connection = $this->getMockBuilder(Connection::class)->disableOriginalConstructor()->getMock();
         $this->callbackDispatcherPlugin = new CallbackDispatcherPlugin($this->connection, $this->eventDispatcher);
+        $this->eventDispatcher->addSubscriber($this->callbackDispatcherPlugin);
     }
 
     public function testModeScriptCallbackArrayDispatched()
@@ -48,7 +49,10 @@ class CallbackDispatcherPluginTest extends \PHPUnit_Framework_TestCase
                     "ManiaPlanet.ModeScriptCallbackArray",
                     [
                         "Parameter",
-                        "Value"
+                        [
+                            "Value",
+                            "Value2"
+                        ]
                     ]
                 ]
             ]);
@@ -60,6 +64,7 @@ class CallbackDispatcherPluginTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('onModeScriptCallbackArray', $calls[0]["methodName"]);
         $this->assertInstanceOf(ModeScriptCallbackArray::class, $calls[0]["arguments"][0]);
         $this->assertEquals("Parameter", $calls[0]["arguments"][0]->getCallbackName());
+        $this->assertCount(2, $calls[0]["arguments"][0]->getCallbackParameters());
     }
 }
 
