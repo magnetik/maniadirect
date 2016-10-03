@@ -54,12 +54,12 @@ class CallbackDispatcherPluginTest extends \PHPUnit_Framework_TestCase
             ]);
 
         $this->callbackDispatcherPlugin->onLoop(ManiaDirectEvents::LOOP);
-        $calls = $call = $listener->getCalls();
+        $calls = $listener->getCalls();
 
         $this->assertCount(1, $calls);
-        $this->assertEquals('onModeScriptCallbackArray', $call[0]["methodName"]);
-        $this->assertInstanceOf(ModeScriptCallbackArray::class, $call[0]["arguments"][0]);
-        $this->assertEquals("Parameter", $call[0]["arguments"][0]->getCallbackName());
+        $this->assertEquals('onModeScriptCallbackArray', $calls[0]["methodName"]);
+        $this->assertInstanceOf(ModeScriptCallbackArray::class, $calls[0]["arguments"][0]);
+        $this->assertEquals("Parameter", $calls[0]["arguments"][0]->getCallbackName());
     }
 }
 
