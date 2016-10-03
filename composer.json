@@ -6,6 +6,9 @@
         "psr-4": { "Nadeo\\Live\\ManiaDirect\\": "src/" },
         "classmap": [ "app/ManiaDirect.php" ]
     },
+    "autoload-dev": {
+        "psr-4": { "Nadeo\\Live\\ManiaDirect\\Tests\\": "tests/"}
+    },
     "require": {
         "symfony/console": "~3.0",
         "symfony/process": "~3.0",
@@ -14,6 +17,9 @@
         "maniaplanet/dedicated-server-api": "~5.0@dev",
         "rdlowrey/auryn": "^1.4",
         "monolog/monolog": "^1.21"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5"
     },
     "bin": [
         "bin/maniadirect.php"
