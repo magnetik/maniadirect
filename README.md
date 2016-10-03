@@ -1,5 +1,7 @@
 # ManiaDirect
 
+[![Build Status](https://travis-ci.org/magnetik/maniadirect.svg?branch=master)](https://travis-ci.org/magnetik/maniadirect)
+
 Like ManiaLive, but Direct. 
 
 ## What
